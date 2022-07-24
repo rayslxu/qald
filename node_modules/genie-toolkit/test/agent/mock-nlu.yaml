@@ -1,0 +1,100 @@
+-
+  utterance: '!! test command all unsupported !!'
+  candidates:
+    - { code: ['now', '=>', '@invalid1.get', '=>', 'notify'], score: 'Infinity', }
+    - { code: ['now', '=>', '@invalid2.get', '=>', 'notify'], score: 1, }
+-
+  utterance: '!! test command all unsupported 2 !!'
+  candidates:
+    - { code: ['now', '=>', '@invalid1.get', '=>', 'notify'], score: 'Infinity', }
+    - { code: ['now', '=>', '@invalid1.get', '=>', 'notify'], score: 1, }
+-
+  utterance: '!! test command always failed !!'
+  candidates: []
+-
+  utterance: '!! test command always bing !!'
+  candidates: []
+-
+  utterance: 'get new york times'
+  candidates:
+    - { code: ['now', '=>', '@test.nytimes.get', '=>', 'notify'], score: 'Infinity', }
+    - { code: ['now', '=>', '@com.nytimes.get_front_page', '=>', 'notify'], score: 1, }
+-
+  utterance: 'get the weight from my scale'
+  candidates:
+    - { code: ['now', '=>', '@com.bodytrace.scale.get', '=>', 'notify'], score: 1, }
+    - { code: ['now', '=>', '@edu.stanford.rakeshr1.fitbit.getbody', '=>', 'notify'], score: 0.5, }
+-
+  utterance: 'get an xkcd comic'
+  candidates:
+    - { code: ['now', '=>', '@com.xkcd.get_comic', '=>', 'notify'], score: 'Infinity' }
+
+-
+  utterance: 'search hello on bing'
+  candidates:
+    - { code: ['now', '=>', '@com.bing.web_search', 'param:query:String', '=', '"', 'hello', '"', '=>', 'notify'], score: 0.5 }
+-
+  utterance: 'search on bing'
+  candidates:
+    - { code: ['now', '=>', '@com.bing.web_search', '=>', 'notify'], score: 0.5 }
+
+-
+  utterance: 'search hello on bing with title filter'
+  candidates:
+    -
+      code: ['now', '=>', '(', '@com.bing.web_search', 'param:query:String', '=', '"', 'hello', '"', ')', 'filter', 'param:title:String', '=~', 'undefined' , '=>', 'notify']
+      score: 0.5
+-
+  utterance: 'play hello'
+  candidates:
+    - { code: ['now', '=>', '@com.spotify.play_song', 'param:toPlay:String', '=', '"', 'hello', '"'], score: 0.5 }
+-
+  utterance: 'play a song'
+  candidates:
+    - { code: ['now', '=>', '@com.spotify.play_song'], score: 0.5 }
+-
+  utterance: 'tweet hello'
+  candidates:
+    - { code: ['now', '=>', '@com.twitter.post', 'param:status:String', '=', '"', 'hello', '"'], score: 0.5 }
+-
+  utterance: 'tweet'
+  candidates:
+    - { code: ['now', '=>', '@com.twitter.post'], score: 0.5 }
+-
+  utterance: '!! test command multiple results !!'
+  candidates:
+    - code: ['now', '=>', '@com.twitter.post']
+      score: 1
+    - code: ['now', '=>', '@com.twitter.post', 'param:status:String', '=', 'QUOTED_STRING_0']
+      score: 0.9
+    - code: ['now', '=>', '@com.twitter.post', 'param:status:String', '=', '"', 'multiple', 'results', '"']
+      score: 0.8
+    - code: ['now', '=>', '@com.facebook.post']
+      score: 0.7
+-
+  utterance: '!! test command error 500 !!'
+  error:
+    code: 500
+    message: 'Internal Server Error'
+
+-
+  utterance: 'What are the side effects of the vaccine?'
+  candidates:
+    - code: ['$dialogue', '@org.thingpedia.dialogue.transaction', '.', 'execute', ';',
+             '@org.thingpedia.covid-vaccine', '.', 'appointment', '(', ')', ';']
+      score: 1
+  intent:
+    command: 0.2
+    other: 0.8
+    ignore: 0
+
+-
+  utterance: 'maybe turn on the lights?'
+  candidates:
+    - code: ['$dialogue', '@org.thingpedia.dialogue.transaction', '.', 'execute', ';',
+             '@org.thingpedia.iot.light-bulb', '.', 'set_power', '(', 'power', '=', 'enum', 'on', ')', ';']
+      score: 0.3
+  intent:
+    command: 1
+    other: 0
+    ignore: 0

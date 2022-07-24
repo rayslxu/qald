@@ -1,0 +1,11 @@
+dataset @com.facebook language "en" {
+    action (p_status :String)  := @com.facebook.post(status=p_status)
+    #_[utterances=["post ${p_status} on facebook"]]
+    #_[preprocessed=["post ${p_status} on facebook"]]
+    #[id=1640495] #[click_count=3];
+
+    action (p_picture_url :Entity(tt:picture))  := @com.facebook.post_picture(picture_url=p_picture_url)
+    #_[utterances=["post ${p_picture_url} on facebook"]]
+    #_[preprocessed=["post ${p_picture_url} on facebook"]]
+    #[id=1640500] #[click_count=1];
+}

@@ -1,0 +1,30 @@
+{
+  "name": "en-inflectors",
+  "version": "1.0.12",
+  "description": "English Inflectors Library For noun (plural to singular and singular to plural), verb (gerund, present & past) and adjective (comparative, superlative) transformations",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "en-stemmer": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.39",
+    "@types/node": "^7.0.5",
+    "ts-node": "^2.1.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "build": "tsc",
+    "prepublish":"mocha && tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/finnlp/en-inflectors.git"
+  },
+  "author": "Alex Corvi <alex@arrayy.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/finnlp/en-inflectors/issues"
+  },
+  "homepage": "https://github.com/finnlp/en-inflectors#readme"
+}
